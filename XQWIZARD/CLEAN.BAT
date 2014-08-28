@@ -1,0 +1,5 @@
+FOR %%A IN (*.OCX) DO REGSVR32 /S /U %%A
+DEL *.PGN
+DEL *.TXT
+DEL *.VBW
+DEL *.OCA

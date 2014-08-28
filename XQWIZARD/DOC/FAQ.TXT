@@ -1,0 +1,49 @@
+象棋巫师源程序常见问题解答
+
+象棋巫师开发团队(webmaster@xqbase.com)　2010年1月
+
+1. 哪里能下载到象棋巫师的源程序？
+
+　　象棋巫师是自由软件，你可以遵照自由软件基金会出版的GNU通用公共许可证条款来修改和重新发布这一程序。源程序已发布在 SourceForge 网站上，下载页面是：
+　　　　http://sourceforge.net/projects/xqwizard/
+　　象棋巫师的版本改进，实时同步地发布在 SourceForge 的SVN站点上，获取地址是：
+　　　　https://xqwizard.svn.sourceforge.net/svnroot/xqwizard/
+　　你可以使用 TortoiseSVN 等SVN客户端程序获取到最新的(跟开发者完全同步的)代码，TortoiseSVN 的使用介绍和下载地址是：
+　　　　http://sourceforge.net/projects/tortoisesvn/
+
+2. 象棋巫师是用什么语言开发的？
+
+　　象棋巫师是用 Visual Basic 6.0 开发的。
+　　VB6是 Visual Studio 98 的一个组件，安装 Visual Studio 98 后，"XQWIZARD.VBP"即被关联为VB6的工程文件。双击VBP文件即可进入VB6的集成开发环境，执行VBP文件右键菜单中的Make，即可编译成象棋巫师执行程序(XQWIZARD.EXE)了。
+　　象棋巫师的工程文件也可以用VB5打开，但是代码需要作适当的修改，例如 InStrRev() 函数需要自定义。但象棋巫师的源程序不适用于 VB.NET 。
+
+3. 源程序由哪些文件构成？
+
+　　用VB6打开工程文件，象棋巫师是"XQWIZARD.VBP"，象棋巫师魔法学校是"XQBOOTH.VBP"，就可以知道源程序由哪些文件构成了。
+
+4. 为什么会找不到DLL文件？
+
+　　如果源程序在VB6的集成开发环境下运行，那么可能会遇到找不到DLL文件的问题，只要将主目录下的"PIPE.DLL"、"ECCO.DLL"、"CCHESS.DLL"、"APPTYPE.DLL"和"MXQFCONV.DLL"复制到"WINDOWS"或"SYSTEM32"目录下即可。
+　　如果运行编译后的执行程序(XQWIZARD.EXE)，那么只要保证上述5个DLL文件与"XQWIZARD.EXE"在同一目录下即可正常运行。
+
+5. 主目录中的EXE和DLL文件有源程序吗？
+
+　　主目录中的EXE和DLL文件(包括上述5个执行程序需要调用的DLL文件)的源程序都可以在 ElephantEye 子项目(SVN的"ELEEYE"目录)中找到。
+
+6. 如何修改资源文件？
+
+　　工程文件中引用了资源文件"XQWIZARD.RES"，它是由另一个资源文件"XQWIZARD.RC"编译而成的。
+　　如需修改执行程序中的图标，那么首先修改"RES"目录下的ICO文件，然后用VC6的"RC"命令把"XQWIZARD.RC"编译为"XQWIZARD.RES"就可以了。
+
+7. 如何制作安装包？
+
+　　象棋巫师的安装包是由 Inno Setup 制作的。由于安装向导用中文语言，所以 Inno Setup 必须附带中文语言文件(简体和繁体各一个)，在 Inno Setup 的官方网站上可以获得：
+　　　　http://www.jrsoftware.org/
+
+8. Visual Basic 提示未找到 ieframe.dll\1：
+
+　　可能是安装高版本IE的缘故，可导入注册表"IEFRAME.REG"解决此问题。
+
+9. 关于"总在最前面"：
+
+　　特别注意：每个模态对话框的"Form_Load"事件里都必须加上"SetTopMost hWnd"这条语句，否则在开启"总在最前面"功能时会导致程序死锁。

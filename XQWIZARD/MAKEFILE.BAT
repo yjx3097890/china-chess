@@ -1,0 +1,12 @@
+DEL xqwizard_setup.exe
+DEL xqwizard_portable.7z
+DEL XQWIZARD.EXE
+DEL XQSCHOOL.EXE
+"C:\Program Files\Microsoft Visual Studio\VB98\vb6.exe" /m XQWIZARD.VBP
+"C:\Program Files\Microsoft Visual Studio\VB98\vb6.exe" /m XQSCHOOL.VBP
+DEL *.OCA
+SIGNCODE /SPC MAKEFILE\XQWIZARD.SPC /V MAKEFILE\XQWIZARD.PVK XQWIZARD.EXE
+SIGNCODE /SPC MAKEFILE\XQWIZARD.SPC /V MAKEFILE\XQWIZARD.PVK XQSCHOOL.EXE
+"C:\Program Files\Inno Setup 5\ISCC.exe" /Q MAKEFILE\XQWIZARD.ISS
+SIGNCODE /SPC MAKEFILE\DOWNLOAD.SPC /V MAKEFILE\DOWNLOAD.PVK xqwizard_setup.exe
+"C:\Program Files\7-Zip\7z.exe" a -bd xqwizard_portable.7z @MAKEFILE\FILELIST.TXT
